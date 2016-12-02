@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   resources :bills
+  resources :actions
+  resources :sponsors
+  resources :categories
+  
 end

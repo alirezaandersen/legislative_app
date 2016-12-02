@@ -1,0 +1,9 @@
+<h1>Bill: <%= @bill.title %></h1>
+<h1>Description: <%= @bill.description %></h1>
+<h2>State: <%= @bill.state %></h2>
+
+<h2>Bill Sponsors</h2>
+<% @sponsors.each do |s| %>
+<h3><%= s.first_name %> <%= s.last_name %></h3>
+<h3><%= s.party_afflication.title %></h3>
+<% end %>

@@ -1,1 +1,32 @@
-<h1>Im New</h1>
+<h1 class="dashboard-welcome">Create a New Bill</h1>
+
+<div class="row">
+  <div class="col s6 offset-s3">
+    <%= form_for @bill do |f| %>
+      <%= f.text_field :title, placeholder: "Bill Title" %><br>
+      <%= f.text_field :description, placeholder: "Description of Bill" %><br>
+      <%= f.text_field :state, placeholder: "State" %><br><br>
+
+        <%= f.fields_for @action do |a| %>
+        <%= a.text_field :name, placeholder: "Action" %><br>
+          <% end  %>
+          <%= f.fields_for @category do |c| %>
+          <%= c.text_field :name, placeholder: "Category Name" %><br>
+          <%= c.text_field :classification, placeholder: "Category Type" %><br><br>
+
+            <%= f.fields_for @sponsor do |s| %>
+            <%= s.text_field :first_name, placeholder: "Sponsors First Name" %><br>
+            <%= s.text_field :last_name, placeholder: "Sponsors Last Name" %><br>
+
+              <%= s.fields_for @party_afflication do |pa| %>
+              <%= pa.text_field :title, placeholder: "Sponsors Party Affilication" %><br>
+            <span>
+              <%= f.submit "CREATE ACCOUNT", method: :post, class:"slider-btn waves-effect waves-light btn" %>
+            </span>
+            <!-- <#% end %> -->
+          <% end %>
+        <% end  %>
+      <% end  %>
+    <% end %>
+  </div>
+</div>
