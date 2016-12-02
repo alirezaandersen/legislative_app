@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201213948) do
+ActiveRecord::Schema.define(version: 20161201235451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,14 +22,29 @@ ActiveRecord::Schema.define(version: 20161201213948) do
     t.datetime "updated_at"
   end
 
-  create_table "actions_bills", id: false, force: :cascade do |t|
-    t.integer  "bill_id",    null: false
-    t.integer  "action_id",  null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "bill_actions", force: :cascade do |t|
+    t.integer "bill_id"
+    t.integer "action_id"
   end
 
-  add_index "actions_bills", ["bill_id", "action_id"], name: "index_actions_bills_on_bill_id_and_action_id", using: :btree
+  add_index "bill_actions", ["action_id"], name: "index_bill_actions_on_action_id", using: :btree
+  add_index "bill_actions", ["bill_id"], name: "index_bill_actions_on_bill_id", using: :btree
+
+  create_table "bill_categories", force: :cascade do |t|
+    t.integer "bill_id"
+    t.integer "category_id"
+  end
+
+  add_index "bill_categories", ["bill_id"], name: "index_bill_categories_on_bill_id", using: :btree
+  add_index "bill_categories", ["category_id"], name: "index_bill_categories_on_category_id", using: :btree
+
+  create_table "bill_sponsors", force: :cascade do |t|
+    t.integer "bill_id"
+    t.integer "sponsor_id"
+  end
+
+  add_index "bill_sponsors", ["bill_id"], name: "index_bill_sponsors_on_bill_id", using: :btree
+  add_index "bill_sponsors", ["sponsor_id"], name: "index_bill_sponsors_on_sponsor_id", using: :btree
 
   create_table "bills", force: :cascade do |t|
     t.text     "title",       null: false
@@ -39,27 +54,9 @@ ActiveRecord::Schema.define(version: 20161201213948) do
     t.datetime "updated_at"
   end
 
-  create_table "bills_categories", id: false, force: :cascade do |t|
-    t.integer  "bill_id",     null: false
-    t.integer  "category_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "bills_categories", ["bill_id", "category_id"], name: "index_bills_categories_on_bill_id_and_category_id", using: :btree
-
-  create_table "bills_sponsors", id: false, force: :cascade do |t|
-    t.integer  "bill_id",    null: false
-    t.integer  "sponsor_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "bills_sponsors", ["bill_id", "sponsor_id"], name: "index_bills_sponsors_on_bill_id_and_sponsor_id", using: :btree
-
   create_table "categories", force: :cascade do |t|
-    t.text     "name",       null: false
-    t.string   "type",       null: false
+    t.text     "name",           null: false
+    t.string   "classification", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -78,5 +75,11 @@ ActiveRecord::Schema.define(version: 20161201213948) do
     t.integer  "party_afflication_id"
   end
 
+  add_foreign_key "bill_actions", "actions"
+  add_foreign_key "bill_actions", "bills"
+  add_foreign_key "bill_categories", "bills"
+  add_foreign_key "bill_categories", "categories"
+  add_foreign_key "bill_sponsors", "bills"
+  add_foreign_key "bill_sponsors", "sponsors"
   add_foreign_key "sponsors", "party_afflications"
 end

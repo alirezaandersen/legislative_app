@@ -14,11 +14,20 @@
   sponsor = Sponsor.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, party_afflication_id: party_affil.id)
 
   categories = ["health", "energy", "defense", "environment"]
-  cat = Category.create(name: categories.sample, type: Faker:Pokemon.name)
+  cat = Category.create(name: categories.sample, classification: Faker::Pokemon.name)
 
   actions = ["Passed", "Vetoed", "Pending", "Adopted"]
   action = Action.create(name: actions.sample)
 
-
-
+  bill.bill_actions.create(action_id: action.id)
+  bill.bill_categories.create(category_id: cat.id)
+  bill.bill_sponsors.create(sponsor_id:sponsor.id)
 end
+puts "Bill Created"
+puts "Party Affilication Created"
+puts "Sponsors Created"
+puts "Categories Created"
+puts "Actions Created"
+puts "JOIN TABLE BillActions"
+puts "JOIN TABLE BillCategories"
+puts "JOIN TABLE BillSponsors"

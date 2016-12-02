@@ -1,4 +1,4 @@
 class BillSponsor < ActiveRecord::Base
-  belongs_to :bill
-  belongs_to :sponsor
+  belongs_to :bills
+  belongs_to :sponsors
 end
