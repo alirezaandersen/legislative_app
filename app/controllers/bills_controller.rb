@@ -33,6 +33,16 @@ class BillsController < ApplicationController
     @categories = @bill.categories
   end
 
+  def edit
+    @bill = Bill.find(params[:id])
+    @sponsor = @bill.sponsors
+    @party_afflication = @sponsor.first.party_afflication
+    @action = @bill.actions
+    @category = @bill.categories
+    # binding.pry
+  end
+
+
 
 private
 

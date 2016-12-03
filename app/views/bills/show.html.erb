@@ -1,9 +1,22 @@
-<h1>Bill: <%= @bill.title %></h1>
-<h1>Description: <%= @bill.description %></h1>
-<h2>State: <%= @bill.state %></h2>
+<h1>Legislative Bill: <%= @bill.title %></h1>
+<h3>Bill Description: <%= @bill.description %></h3>
+<h3>State: <%= @bill.state %></h3>
 
 <h2>Bill Sponsors</h2>
 <% @sponsors.each do |s| %>
-<h3><%= s.first_name %> <%= s.last_name %></h3>
-<h3><%= s.party_afflication.title %></h3>
+<h4>Name: <%= s.first_name %> <%= s.last_name %></h4>
+<h4>Party Affiliation: <%= s.party_afflication.title %></h4><br>
 <% end %>
+
+<h2>Bill Actions</h2>
+<% @actions.each do |a| %>
+<h4>action: <%= a.name %>
+<% end %>
+
+<h2>Bill Categories</h2>
+<% @categories.each do |c| %>
+<h4>Category: <%= c.name %></h4>
+<h4>Type: <%= c.classification %></h4>
+<% end %>
+
+<%= link_to "Edit", edit_bill_path(@bill) %>

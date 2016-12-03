@@ -5,5 +5,4 @@ belongs_to :party_afflication
 
 accepts_nested_attributes_for :party_afflication, allow_destroy: true
 
-def affiliation
 end

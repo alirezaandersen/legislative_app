@@ -1,4 +1,4 @@
-<h1 class="dashboard-welcome">Create a New Bill</h1>
+<h1 class="dashboard-welcome">Update <%= @bill.title %> Bill</h1>
 
 <div class="row">
   <div class="col s6 offset-s3">
@@ -21,7 +21,7 @@
               <%= s.fields_for @party_afflication do |pa| %>
               <%= pa.text_field :title, placeholder: "Sponsors Party Affilication" %><br>
             <span>
-              <%= f.submit "CREATE BILL", method: :post, class:"slider-btn waves-effect waves-light btn" %>
+              <%= f.submit "UPDATE BILL", method: :post, class:"slider-btn waves-effect waves-light btn" %>
             </span>
             <!-- <#% end %> -->
           <% end %>
