@@ -1,4 +1,5 @@
 class Sponsor < ActiveRecord::Base
+audited
 has_many :bill_sponsors
 has_many :bills, through: :bill_sponsors
 belongs_to :party_afflication

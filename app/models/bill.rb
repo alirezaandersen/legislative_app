@@ -1,4 +1,5 @@
 class Bill < ActiveRecord::Base
+audited
 has_many :bill_sponsors
 has_many :bill_categories
 has_many :bill_actions
